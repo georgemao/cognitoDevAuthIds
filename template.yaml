@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A function to experiment cold start time when cold starts 
+
+
+Resources:
+  authFn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      Timeout: 20
+
+  oidcFn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: auth0.handler
+      Runtime: nodejs6.10
+      Timeout: 20
