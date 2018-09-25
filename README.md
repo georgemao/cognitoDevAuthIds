@@ -18,7 +18,7 @@ sam local invoke authFn -e "event.json"
 ![alt text](https://docs.aws.amazon.com/cognito/latest/developerguide/images/amazon-cognito-dev-auth-enhanced-flow.png "Flow")
 
 1. Your users will authenticate against your existing user directory. Your application will handle this.
-2. When the user successfully authenticates, your application will invoke the Cognito API: **getCredentialsForIdentity** 
+2. When the user successfully authenticates, your application will invoke the [Cognito API](https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetOpenIdTokenForDeveloperIdentity.html): **getOpenIdTokenForDeveloperIdentity** 
 This API will vend an OIDC (JWT format) token that you can exchange for temporary AWS credentials
 
 You will need to pass it parameters in this format:
@@ -33,7 +33,7 @@ You will need to pass it parameters in this format:
 ```
 This call will return an **IdentityId** and **Token** which you will pass into the call to exchange for AWS credentials.
 
-3. Exchange the token for AWS credentials using **getCredentialsForIdentity**
+3. Exchange the token for AWS credentials using **getCredentialsForIdentity**. Cognito will assign the user a role based on the rules you have configured in your Identity Pool.
 
 You will need to pass it credentials in this format:
 
@@ -61,5 +61,6 @@ You will need to pass it credentials in this format:
 ```
 
 ## Notes
-You must invoke the **getCredentialsForIdentity** API using AWS Developer credentials with permissions.
-[See AWS Docs for details](https://docs.aws.amazon.com/cognito/latest/developerguide/developer-authenticated-identities.html)
+- You must invoke the **getOpenIdTokenForDeveloperIdentity** API using AWS Developer credentials with permissions: cognito-identity:GetOpenIdTokenForDeveloperIdentity
+- **getCredentialsForIdentity** is a public API. You do not need any credentials to call this API
+- [See AWS Docs for details](https://docs.aws.amazon.com/cognito/latest/developerguide/developer-authenticated-identities.html)
