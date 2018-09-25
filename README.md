@@ -18,7 +18,7 @@ sam local invoke authFn -e "event.json"
 ![alt text](https://docs.aws.amazon.com/cognito/latest/developerguide/images/amazon-cognito-dev-auth-enhanced-flow.png "Flow")
 
 1. Your users will authenticate against your existing user directory. Your application will handle this.
-2. When the user successfully authenticates, your application will invoke the Cognito API: *getCredentialsForIdentity*  
+2. When the user successfully authenticates, your application will invoke the Cognito API: **getCredentialsForIdentity** 
 This API will vend an OIDC (JWT format) token that you can exchange for temporary AWS credentials
 
 You will need to pass it parameters in this format:
