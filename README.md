@@ -5,6 +5,14 @@ You should use the Developer Authenticated flow when:
 1. You plan to use your own data store to maintain your user database
 2. You want integrate with Cognito so you can vend AWS Credentials for your users
 
+## Running the example
+
+This is setup as a SAM project that you can execute with the following command:
+
+```
+sam local invoke authFn -e "event.json"
+```
+
 ## Steps
 
 1. Your users will authenticate against your existing user directory. Your application will handle this.
